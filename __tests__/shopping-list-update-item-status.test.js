@@ -38,7 +38,7 @@ beforeAll(async () => {
         userName: 'visitor@test.com',
         password: 'visitor123',
         name: 'visitor',
-        isAdmin: false // Bude mít roli 'visitor'
+        isAdmin: false
     });
 
     tokenVisitor = jwt.sign(

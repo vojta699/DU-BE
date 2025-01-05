@@ -43,7 +43,7 @@ describe('POST /shoppingList', () => {
             .set('Authorization', `Bearer ${token}`)
             .send({ name: 'New Shopping List' });
 
-        expect(res.statusCode).toBe(201); // expecting 201 (Created)
+        expect(res.statusCode).toBe(201);
         expect(res.body.status).toBe('success');
         expect(res.body.message).toBe('Shopping list created successfully');
         expect(res.body.data).toHaveProperty('name', 'New Shopping List');
@@ -54,7 +54,7 @@ describe('POST /shoppingList', () => {
         const res = await request(app)
             .post('/shoppingList')
             .set('Authorization', `Bearer ${token}`)
-            .send({}); // sending an empty body
+            .send({});
 
         expect(res.statusCode).toBe(400);
         expect(res.body.status).toBe('error');
@@ -65,7 +65,7 @@ describe('POST /shoppingList', () => {
         const res = await request(app)
             .post('/shoppingList')
             .set('Authorization', `Bearer ${token}`)
-            .send({ name: 12345 }); // not a string
+            .send({ name: 12345 });
     
         expect(res.statusCode).toBe(400);
         expect(res.body).toHaveProperty('message', 'Invalid input data');
@@ -81,7 +81,7 @@ describe('POST /shoppingList', () => {
         const invalidToken = jwt.sign(
             { id: 'invalidId' },
             process.env.JWT_SECRET,
-            { expiresIn: '-1s' } // Expired token
+            { expiresIn: '-1s' }
         );
 
         const res = await request(app)

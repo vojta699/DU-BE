@@ -62,7 +62,7 @@ describe('GET /shoppingList', () => {
         const invalidToken = jwt.sign(
             { id: 'invalidId' },
             process.env.JWT_SECRET,
-            { expiresIn: '-1s' } // Expired token
+            { expiresIn: '-1s' }
         );
 
         const res = await request(app)
